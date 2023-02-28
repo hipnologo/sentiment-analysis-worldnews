@@ -2,6 +2,8 @@
 
 This is a Python script that loads news headlines from around the world using the News API, applies sentiment analysis to the headlines, and displays the results in a Streamlit dashboard. The sentiment analysis is performed using the VADER sentiment analysis tool.
 
+![GitHub](https://img.shields.io/github/license/hipnologo/sentiment-analysis-worldnews)
+
 ## Requirements
 - pandas
 - numpy
@@ -20,13 +22,13 @@ This is a Python script that loads news headlines from around the world using th
 1. Clone the repository:
 ```bash
 git clone https://github.com/username/repo.git
-cd repo
+cd repo```
 
 2. Install the required packages:
-pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 3. Run the script:
-streamlit run sentiment_analysis.py
+```streamlit run sentiment_analysis.py```
 
 4. Wait for the news to load from the News API.
 
