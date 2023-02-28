@@ -20,18 +20,16 @@ This is a Python script that loads news headlines from around the world using th
 
 ## Usage
 1. Clone the repository:
-```bash
-git clone https://github.com/username/repo.git
-cd repo```
+``git clone https://github.com/username/repo.git``
 
-2. Install the required packages:
-```pip install -r requirements.txt```
+1. Install the required packages:
+`pip install -r requirements.txt`
 
-3. Run the script:
-```streamlit run sentiment_analysis.py```
+1. Run the script:
+`streamlit run sentiment_analysis.py`
 
-4. Wait for the news to load from the News API.
+1. Wait for the news to load from the News API.
 
-5. Select a news source from the sidebar to filter the headlines and see the sentiment analysis score for that source.
+2. Select a news source from the sidebar to filter the headlines and see the sentiment analysis score for that source.
 
-6. The dashboard will display a table of the news headlines and their sentiment scores.
+3. The dashboard will display a table of the news headlines and their sentiment scores.
