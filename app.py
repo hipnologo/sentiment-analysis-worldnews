@@ -11,6 +11,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
+st.expander("About this app", expanded=False).write(
 """
 This script loads news headlines from around the world using the News API, applies sentiment analysis to the headlines,
 and displays the results in a Streamlit dashboard. The sentiment analysis is performed using the VADER sentiment analysis tool.
@@ -27,9 +28,12 @@ Usage:
   - Select a news source from the sidebar to filter the headlines and see the sentiment analysis score for that source.
   - The dashboard will display a table of the news headlines and their sentiment scores.
 
+
 Author: Fabio Carvalho
+
 Inspired by: Aditya Verma 
 """
+)
 
 # Import news from around the world using a public API
 world_news_url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=4d1c65d85f4347e4913e2ed023cf0bf2'
@@ -63,12 +67,13 @@ st.sidebar.write('The sentiment score is: ', score)
 st.sidebar.write('---')
 st.sidebar.write('The sentiment analysis is: ', end='')
 st.sidebar.metric(label="Sentiment Score", value=score['compound'])
-st.sidebar.write('Positive' if score['compound'] >= 0.05 else 'Negative' if score['compound'] <= -0.05 else 'Neutral')
+st.sidebar.markdown('**Positive**' if score['compound'] >= 0.05 else '**Negative**' if score['compound'] <= -0.05 else '**Neutral**')
 
 # Show the news headlines and sentiment scores in a table
 st.table(selected_world_news[['title', 'description', 'author']])
 
-# Save sentiment analysis scores to a pickle file 
-file = open('sentiment_analysis_scores.pkl', 'wb')
-st.write('Saving sentiment analysis scores to a pickle file...')
-st.caption('Done!')
+if st.sidebar.button('Save sentiment analysis scores'): 
+  # Save sentiment analysis scores to a pickle file 
+  file = open('sentiment_analysis_scores.pkl', 'wb')
+  st.write('Saving sentiment analysis scores to a pickle file...')
+  st.caption('Done!')
