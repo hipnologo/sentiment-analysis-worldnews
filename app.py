@@ -35,8 +35,12 @@ Inspired by: Aditya Verma
 """
 )
 
+# Select news country from an array list of country codes
+countries = ['br', 'us', 'gb', 'au', 'ca', 'de', 'fr', 'in', 'it', 'jp', 'mx', 'ru', 'za']
+selected_country = st.sidebar.selectbox('Country', ('us', *countries))
+
 # Import news from around the world using a public API
-world_news_url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=4d1c65d85f4347e4913e2ed023cf0bf2'
+world_news_url = 'https://newsapi.org/v2/top-headlines?country='+ selected_country + '&apiKey=4d1c65d85f4347e4913e2ed023cf0bf2'
 world_news = requests.get(world_news_url, verify=False).json()
 # check if the request was successful
 if world_news['status'] == 'ok':
@@ -48,8 +52,6 @@ if world_news['status'] == 'ok':
 st.title('Sentiment Analysis of World News')
 st.markdown('This application is a dashboard to analyze the sentiment of news headlines.')
 
-st.sidebar.title('Options')
-st.sidebar.write('---')
 st.sidebar.subheader('Select the news source')
 
 # Select news source from the world_news DataFrame author column
