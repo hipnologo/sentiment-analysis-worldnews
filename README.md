@@ -1,19 +1,15 @@
 # Sentiment Analysis of World News
 
-This script loads news headlines or tweets using APIs, applies sentiment analysis to the headlines or tweets,
-and displays the results in a Streamlit dashboard. The sentiment analysis is performed using the VADER sentiment analysis tool.
+This script loads news headlines or tweets using APIs, applies sentiment analysis to the headlines or tweets, and displays the results in a Streamlit dashboard. The sentiment analysis is performed using the VADER sentiment analysis tool.
 
-The dashboard allows the user to select a news source or hashtag, and displays
-the sentiment analysis score for the selected news source or hashtag, as well as a table of the news headlines or tweets and their sentiment scores.
+The dashboard allows the user to select a news source or hashtag, and displays the sentiment analysis score for the selected news source or hashtag, as well as a table of the news headlines or tweets and their sentiment scores.
 
-This script requires pandas, numpy, matplotlib, seaborn, nltk, pickle, streamlit, requests, json, plotly.express, plotly.graph_objects,
-vaderSentiment, and tweepy to be installed.
 
 ## Usage
 
 - Clone the repository:
     ```
-    git clone https://github.com/username/repo.git
+    git clone https://github.com/hipnologo/sentiment-analysis-worldnews.git
     ```
 
 - Install the required packages:
@@ -50,14 +46,6 @@ Contributions are always welcome! If you have any suggestions or would like to a
 - plotly.express
 - plotly.graph_objects
 - vaderSentiment
-
-## Author
-
-Fabio Carvalho
-
-## Inspired by
-
-Aditya Verma 
 
 ## License
 
