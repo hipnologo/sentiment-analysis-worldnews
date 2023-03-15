@@ -1,3 +1,4 @@
+import datetime
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -75,7 +76,12 @@ st.sidebar.markdown('**Positive**' if score['compound'] >= 0.05 else '**Negative
 st.table(selected_world_news[['title', 'description', 'author']])
 
 if st.sidebar.button('Save sentiment analysis scores'): 
-  # Save sentiment analysis scores to a pickle file 
-  file = open('sentiment_analysis_scores.pkl', 'wb')
-  st.write('Saving sentiment analysis scores to a pickle file...')
-  st.caption('Done!')
+  # Save sentiment analysis scores to a pickle file with filename sentiment_analysis_scores + date and time
+  dateandtime = datetime.datetime.now().strftime("%Y%m%d") #strftime("%Y%m%d-%H%M%S")
+  filename = 'sentiment_analysis_scores_' + dateandtime + '.pkl'
+  try:
+    with open(filename, 'wb') as f:
+        pickle.dump(score, f)
+    st.write(f'Sentiment analysis scores saved successfully to {filename}.')
+  except Exception as e:
+    st.error(f"Error saving sentiment analysis scores: {e}")
