@@ -70,9 +70,9 @@ The polarity_scores() method returns a dictionary containing the following keys:
 ```
 The compound score can be used to classify the overall sentiment as positive, negative, or neutral. Typically, a threshold is applied, such as:
 
-**Positive** sentiment: compound score > 0.05
-**Neutral** sentiment: -0.05 <= compound score <= 0.05
-**Negative** sentiment: compound score < -0.05
+* **Positive** sentiment: compound score > 0.05
+* **Neutral** sentiment: -0.05 <= compound score <= 0.05
+* **Negative** sentiment: compound score < -0.05
 Keep in mind that these threshold values can be adjusted according to the specific context or requirements of your project.
 
 Using the `vaderSentiment` library in conjunction with `tweepy` allows you to perform sentiment analysis on tweets fetched from Twitter. Tweepy is a popular Python library for accessing the Twitter API, making it easy to collect tweets for analysis. By combining these two libraries, you can analyze the sentiment of tweets and gain valuable insights into public opinions or trends.
