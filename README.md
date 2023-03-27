@@ -4,7 +4,10 @@ This script loads news headlines or tweets using APIs, applies sentiment analysi
 
 The dashboard allows the user to select a news source or hashtag, and displays the sentiment analysis score for the selected news source or hashtag, as well as a table of the news headlines or tweets and their sentiment scores.
 
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Forks](https://img.shields.io/github/forks/hipnologo/sentiment-analysis-worldnews)](https://github.com/hipnologo/sentiment-analysis-worldnews/network/members)
+[![Stars](https://img.shields.io/github/stars/hipnologo/sentiment-analysis-worldnews)](https://github.com/hipnologo/sentiment-analysis-worldnews/stargazers)
+[![Issues](https://img.shields.io/github/issues/hipnologo/sentiment-analysis-worldnews)](https://github.com/hipnologo/sentiment-analysis-worldnews/issues)
 ## Usage
 
 - Clone the repository:
@@ -36,35 +39,40 @@ The line of code you provided is an import statement in Python:
 
 ```python
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+```
 
-This line imports the SentimentIntensityAnalyzer class from the vaderSentiment.vaderSentiment module. The SentimentIntensityAnalyzer class is the main component of the library and is used to analyze the sentiment of a given text.
+This line imports the SentimentIntensityAnalyzer class from the `vaderSentiment.vaderSentiment` module. The `SentimentIntensityAnalyzer` class is the main component of the library and is used to analyze the sentiment of a given text.
 
 To use VADER for sentiment analysis, you can follow these steps:
 
 1. Install the vaderSentiment library, if you haven't already, using pip:
-pip install vaderSentiment
+```pip install vaderSentiment```
 
 2. Import the SentimentIntensityAnalyzer class in your Python script:
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+```from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer```
 
 3. Create an instance of the SentimentIntensityAnalyzer class:
-analyzer = SentimentIntensityAnalyzer()
+```analyzer = SentimentIntensityAnalyzer()```
 
 4. Analyze the sentiment of a text:
+```
 text = "I love this product!"
 sentiment = analyzer.polarity_scores(text)
+```
 
 5. Interpret the results:
 The polarity_scores() method returns a dictionary containing the following keys:
+```
 'neg': Negative sentiment score (0 to 1)
 'neu': Neutral sentiment score (0 to 1)
 'pos': Positive sentiment score (0 to 1)
 'compound': Compound sentiment score (-1 to 1)
+```
 The compound score can be used to classify the overall sentiment as positive, negative, or neutral. Typically, a threshold is applied, such as:
 
-Positive sentiment: compound score > 0.05
-Neutral sentiment: -0.05 <= compound score <= 0.05
-Negative sentiment: compound score < -0.05
+**Positive** sentiment: compound score > 0.05
+**Neutral** sentiment: -0.05 <= compound score <= 0.05
+**Negative** sentiment: compound score < -0.05
 Keep in mind that these threshold values can be adjusted according to the specific context or requirements of your project.
 
 Using the `vaderSentiment` library in conjunction with `tweepy` allows you to perform sentiment analysis on tweets fetched from Twitter. Tweepy is a popular Python library for accessing the Twitter API, making it easy to collect tweets for analysis. By combining these two libraries, you can analyze the sentiment of tweets and gain valuable insights into public opinions or trends.

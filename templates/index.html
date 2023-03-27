@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentiment Analysis Dashboard</title>
+    <!-- Add Bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4 mb-4">Sentiment Analysis Dashboard</h1>
+      <form method="POST" action="/">
+        <div class="form-group">
+          <label for="apiKey">API Key:</label>
+          <input type="text" class="form-control" id="apiKey" name="apiKey" value="{{ apiKey }}" required>
+        </div>
+        <div class="form-group">
+          <label for="selected_country">Country:</label>
+          <select class="form-control" id="selected_country" name="selected_country">
+            {% for country in countries %}
+            <option value="{{ country }}" {% if country == selected_country %}selected{% endif %}>{{ country }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="source_type">Source Type:</label>
+          <select class="form-control" id="source_type" name="source_type">
+            <option value="News" {% if source_type == 'News' %}selected{% endif %}>News</option>
+            <option value="Tweets" {% if source_type == 'Tweets' %}selected{% endif %}>Tweets</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Load Data</button>
+          {% if source_type == 'News' %}
+          <button type="submit" class="btn btn-primary" name="save_scores">Save Scores</button>
+          {% endif %}
+        </div>
+      </form>
+      {% if error_msg %}
+      <div class="alert alert-danger" role="alert">{{ error_msg }}</div>
+      {% endif %}
+      {% if source_type == 'News' %}
+      {% if 'world_news' in locals() or 'world_news' in globals() %}
+      <h2 class="mt-4 mb-4">{{ sentiment_title }}</h2>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sentiment Analysis</h5>
+              <p class="card-text">{{ sentiment_score }}</p>
+              <p class="card-text">{{ sentiment_breakdown }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Source</th>
+                <th>Author</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in range(selected_world_news.shape[0]) %}
+              <tr>
+                <td>{{ selected_world_news.iloc[i]['title'] }}</td>
+                <td>{{ selected_world_news.iloc[i]['description'] }}</td>
+                <td>{{ selected_world_news.iloc[i]['source']['name'] }}</td>
+                <td>{{ selected_world_news.iloc[i]['author'] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <form method="post">
+                  <div class="form-group">
+                    <label for="apiKey">API Key:</label>
+                    <input type="text" class="form-control" id="apiKey" name="apiKey" value="{{ apiKey }}">
+                  </div>
+                  <div class="form-group">
+                    <label for="selected_country">Country:</label>
+                    <select class="form-control" id="selected_country" name="selected_country">
+                      {% for country in countries %}
+                      {% if country == selected_country %}
+                      <option selected value="{{ country }}">{{ country }}</option>
+                      {% else %}
+                      <option value="{{ country }}">{{ country }}</option>
+                      {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="source_type">Source Type:</label>
+                    <select class="form-control" id="source_type" name="source_type">
+                      {% if source_type == 'News' %}
+                      <option selected value="News">News</option>
+                      <option value="Tweets">Tweets</option>
+                      {% else %}
+                      <option value="News">News</option>
+                      <option selected value="Tweets">Tweets</option>
+                      {% endif %}
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  {% if source_type == 'News' %}
+                  <button type="submit" name="save_scores" class="btn btn-secondary">Save Scores</button>
+                  {% endif %}
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-12">
+            {% if error_msg %}
+            <div class="alert alert-danger" role="alert">
+              {{ error_msg }}
+            </div>
+            {% else %}
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ sentiment_title }}</h5>
+                <p class="card-text">{{ sentiment_score }}</p>
+                <p class="card-text">{{ sentiment_breakdown }}</p>
+                {% if save_message %}
+                <p class="card-text">{{ save_message }}</p>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% if 'world_news' in locals() or 'world_news' in globals() %}
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col">Source</th>
+              <th scope="col">Author</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for _, row in selected_world_news.iterrows() %}
+            <tr>
+              <td>{{ row['title'] }}</td>
+              <td>{{ row['description'] }}</td>
+              <td>{{ row['source']['name'] }}</td>
+              <td>{{ row['author'] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+      </div>
+      
+</body>
+</html>
+
+
+        
