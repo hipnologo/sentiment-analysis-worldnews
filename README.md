@@ -116,3 +116,5 @@ Contributions are always welcome! If you have any suggestions or would like to a
 ## License
 
 This project is licensed under the MIT License. See LICENSE for more information.
+
+<a href="https://www.buymeacoffee.com/hipnologod" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
